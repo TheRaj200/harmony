@@ -3,6 +3,7 @@ import MainRoutes from './routes/MainRoutes'
 import LoadingScreen from './pages/LoadingScreen'
 import { AnimatePresence, motion } from 'framer-motion';
 import Lenis from '@studio-freight/lenis';
+import Footer from './components/Footer';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -48,7 +49,12 @@ const App = () => {
           </motion.div>
         ) : null}
       </AnimatePresence>
-      {!loading && <MainRoutes />}
+      {!loading && (
+        <>
+          <MainRoutes />
+       
+        </>
+      )}
     </div>
   )
 }

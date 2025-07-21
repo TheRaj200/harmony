@@ -3,6 +3,7 @@ import HeroSection from '../components/HeroSection';
 import Product from '../components/products';
 import Banner from '../components/Banner';
 import VideoSection from '../components/VideoSection';
+import NewProducts from '../components/NewProducts';
 
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
      <Product/>
      <Banner/>
      <VideoSection/>
+     <NewProducts/>
     </div>
   );
 };

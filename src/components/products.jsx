@@ -125,7 +125,7 @@ const products = () => {
      
       <motion.h1
         ref={h1Ref}
-        className='translate-y-45 md:translate-y-55  xl:translate-y-65 uppercase text 2xl:translate-y-85i text-center text-5xl font-extrabold text-[#32c0c2] text-shadow-sm text flex flex-wrap justify-center gap-x-4 relative z-50'
+        className='translate-y-45 md:translate-y-55  xl:translate-y-65 uppercase text 2xl:translate-y-85 text-center text-5xl font-extrabold text-[#32c0c2] text-shadow-sm text flex flex-wrap justify-center gap-x-4 relative z-50'
         variants={containerVariants}
         initial="hidden"
         animate={controls}
@@ -170,7 +170,7 @@ const products = () => {
             alt="Nut Background"
             style={{ filter: 'blur(0.3px)' }}
             className="absolute left-1/2 rotate-180 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] z-0 pointer-events-none select-none"  
-            animate={{ scale: hoverNut ? 3.8 : 1 }}
+            animate={{ scale: hoverNut ? 3.5 : 1 }}
             transition={{ type: 'spring', stiffness: 200, damping: 18 }}
           />
           <ThreeDImage
@@ -190,7 +190,7 @@ const products = () => {
             alt="Berry Background"
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] z-0 pointer-events-none select-none"
             style={{ filter: 'blur(0.3px)' }}
-            animate={{ scale: hoverBerry ? 3.7 : 1 }}
+            animate={{ scale: hoverBerry ? 3.5 : 1 }}
             transition={{ type: 'spring', stiffness: 200, damping: 18 }}
           />
           <ThreeDImage

@@ -121,7 +121,7 @@ const Banner = () => {
         exit="exit"
       >
         <motion.span
-          className="text-[#32c0c2] text-lg md:text-2xl text font-cursive italic mb-1 block"
+          className="text-[#32c0c2] text-lg md:text-2xl text font-extrabold font-cursive italic mb-1 text-shadow-2xs block"
           style={{ fontFamily: "cursive" }}
           variants={itemVariants}
         >

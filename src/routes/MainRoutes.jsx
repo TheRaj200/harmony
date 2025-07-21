@@ -7,9 +7,10 @@ import Login from '../pages/Login';
 import SignIn from '../pages/SignIn';
 import HomePage from '../pages/Home';
 import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 
 const MainRoutes = () => (
- <div className='relative'>
+ <div className='relative '>
     <Nav/>
      <Routes>
     <Route path="/" element={<HomePage />} />
@@ -19,6 +20,7 @@ const MainRoutes = () => (
     <Route path="/login" element={<Login />} />
     <Route path="/signin" element={<SignIn />} />
   </Routes>
+  <Footer/>
  </div>
 );
 
