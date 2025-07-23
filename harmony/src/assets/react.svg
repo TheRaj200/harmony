@@ -1,0 +1,23 @@
+// filepath: c:\Users\raj00\OneDrive\Desktop\harmony\src\pages\ProductDetail.jsx
+import React from 'react';
+import './ProductDetail.css'; // Assuming you have a CSS file for styles
+import { motion } from 'framer-motion'; // Example animation library
+
+const ProductDetail = ({ product }) => {
+  return (
+    <motion.div 
+      className="product-detail" 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 0.5 }}
+    >
+      <h1 className="product-title">{product.name}</h1>
+      <img src={product.image} alt={product.name} className="product-image" />
+      <p className="product-description">{product.description}</p>
+      <span className="product-price">${product.price}</span>
+      <button className="add-to-cart-button">Add to Cart</button>
+    </motion.div>
+  );
+};
+
+export default ProductDetail;

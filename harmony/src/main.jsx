@@ -1,0 +1,23 @@
+// filepath: c:\Users\raj00\OneDrive\Desktop\harmony\src\pages\ProductDetail.jsx
+import React from 'react';
+import './ProductDetail.css'; // Import the CSS file for styling
+
+const ProductDetail = () => {
+  return (
+    <div className="product-detail-container">
+      <div className="product-image">
+        <img src="path_to_your_image.jpg" alt="Product" />
+      </div>
+      <div className="product-info">
+        <h1 className="product-title">Product Title</h1>
+        <p className="product-description">
+          This is a detailed description of the product. It includes features, benefits, and other relevant information.
+        </p>
+        <span className="product-price">$99.99</span>
+        <button className="add-to-cart-button">Add to Cart</button>
+      </div>
+    </div>
+  );
+};
+
+export default ProductDetail;

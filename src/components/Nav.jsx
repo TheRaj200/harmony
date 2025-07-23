@@ -6,10 +6,9 @@ import Wave from 'react-wavify';
 
 const navLinks = [
   { to: '/', label: 'Home' },
-  { to: '/services', label: 'Services' },
   { to: '/products', label: 'Products' },
-  { to: '/clients', label: 'Clients' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/about', label: 'About' },
+  { to: '/login', label: 'Login' },
 ];
 
 const Nav = ({ animateNav }) => {
@@ -119,7 +118,7 @@ const Nav = ({ animateNav }) => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center w-screen h-screen md:hidden"
+            className="fixed inset-0 z-90 flex flex-col items-center justify-center w-screen h-screen md:hidden"
             initial={{ y: '-100%', opacity: 1 }}
             animate={{ y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } }}
             exit={{ y: '-100%', opacity: 1, transition: { duration: 0.4, ease: 'easeIn' } }}

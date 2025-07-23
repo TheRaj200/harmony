@@ -201,7 +201,7 @@ const HeroSection = () => {
         />
         {/* Top left c8.png (animated) */}
         <motion.img
-          className='absolute w-60 top-1/4 left-[10%] -translate-y-1/2 z-90 opacity-100 rotate-10'
+          className='absolute w-60 top-1/4 left-[10%] -translate-y-1/2 z-50 opacity-100 rotate-10'
           src="./images/c8.png"
           alt=""
           style={{ 
