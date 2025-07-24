@@ -6,6 +6,26 @@ import "../styles/animations.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const animateOnView = (selector, animationIn, animationOut) => {
+  const elements = document.querySelectorAll(selector);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          gsap.to(entry.target, animationIn);
+        } else {
+          gsap.to(entry.target, animationOut);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  elements.forEach((el) => {
+    observer.observe(el);
+  });
+  return observer;
+};
+
 const About = () => {
   const [vals, setVals] = useState({
     currentIndex: 1,
@@ -38,10 +58,31 @@ const About = () => {
       observer.observe(element);
     });
 
+    // Blur/fade in-out animation for headings only
+    const blurIn = { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.8, ease: "power2.out" };
+    const blurOut = { opacity: 0, filter: "blur(16px)", y: 40, duration: 0.6, ease: "power2.in" };
+
+    // Simple fade/slide for cards/sections
+    const fadeIn = { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" };
+    const fadeOut = { opacity: 0, y: 40, duration: 0.6, ease: "power2.in" };
+
+    const headingObserver = animateOnView(
+      ".blur-animate-heading",
+      blurIn,
+      blurOut
+    );
+    const cardObserver = animateOnView(
+      ".fade-animate-card",
+      { ...fadeIn, delay: 0.1 },
+      { ...fadeOut, delay: 0 }
+    );
+
     return () => {
       animatedElements.forEach((element) => {
         observer.unobserve(element);
       });
+      headingObserver.disconnect();
+      cardObserver.disconnect();
     };
   }, []);
   const preloadImages = () => {
@@ -113,24 +154,19 @@ const About = () => {
 
   return (
     <div
-      className="w-full  "
+      className="w-full h-full -translate-y-30"
       style={{
         background:
-          "linear-gradient(180deg, #4F46E5 0%, #7E22CE 35%, #BE185D 65%, #DB2777 100%)",
+          "linear-gradient(180deg,#DB2777  0%, #7E22CE 35%, #BE185D 65%, #4F46E5 100%)",
       }}
     >
-      <div ref={parentDivRed} className="w-[100%] mx-auto h-[800vh]">
-        <div className="w-full h-screen sticky left-0 top-0">
-          <canvas ref={canvasRef} className="w-full h-screen"></canvas>
-        </div>
-      </div>
-
+  
       {/* About Us Section */}
-      <div className="  px-4 md:px-8 lg:px-16">
-        <div className="mx-auto">
-          <div className="mb-16 text-center !mt-10">
+      <div className="   px-4 md:px-8 lg:px-16 ">
+        <div className="mx-auto translate-y-40">
+          <div className="mb-16 text-center !mt-25 ">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 opacity-0 animate-fadeIn"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 opacity-0 blur-animate-heading"
               id="about-title"
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-pink-200  text uppercase text-shadow-2xl">
@@ -146,7 +182,9 @@ const About = () => {
               alt=""
             />
 
-            <div className="opacity-0 md:w-1/2 animate-slideInLeft bg-gradient-to-br from-pink-700/20 to-pink-800  !p-6 md:!p-18 rounded-xl shadow-lg backdrop-blur-md  transform transition-all duration-500 hover:shadow-pink-500/20 hover:border-pink-500/40">
+            <div
+              className="opacity-0 md:w-1/2 fade-animate-card bg-gradient-to-br from-pink-700/20 to-pink-800  !p-6 md:!p-18 rounded-xl shadow-lg backdrop-blur-md  transform transition-all duration-500 hover:shadow-pink-500/20 hover:border-pink-500/40"
+            >
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center">
                 Our Founder: Aayush Sapra
               </h2>
@@ -164,10 +202,10 @@ const About = () => {
       </div>
 
       {/* Testimonials Section */}
-      <div className=" !px-4 !md:px-8 !mt-20 !lg:px-16">
+      <div className=" !px-4 !md:px-8 !mt-20 !lg:px-16  translate-y-40">
         <div className=" mx-auto">
           <div className="mb-16 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 opacity-0 animate-fadeIn">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 opacity-0 animate-fadeIn blur-animate-heading">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 text to-pink-200 ">
                 What Our Customers Say
               </span>
@@ -176,7 +214,7 @@ const About = () => {
 
           <div className="flex justify-center items-center flex-col md:flex-row !mt-20  gap-8">
             {/* Testimonial 1 */}
-            <div className="bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-100  hover:shadow-pink-500/20 backdrop-blur-md">
+            <div className="bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-100  hover:shadow-pink-500/20 backdrop-blur-md fade-animate-card">
               <div className="flex items-center mb-6">
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center text-white font-bold !mr-4 shadow-lg">
                   <span className="text-xl">S</span>
@@ -210,7 +248,7 @@ const About = () => {
             </div>
 
             {/* Testimonial 2 */}
-            <div className="bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-300  hover:shadow-pink-500/20 backdrop-blur-md">
+            <div className="bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-300  hover:shadow-pink-500/20 backdrop-blur-md fade-animate-card">
               <div className="flex items-center mb-6">
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center text-white font-bold !mr-4 shadow-lg">
                   <span className="text-xl ">M</span>
@@ -242,7 +280,7 @@ const About = () => {
             </div>
 
             {/* Testimonial 3 */}
-            <div className="bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-500 hover:shadow-pink-500/20 backdrop-blur-md">
+            <div className="bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-500 hover:shadow-pink-500/20 backdrop-blur-md fade-animate-card">
               <div className="flex items-center mb-6">
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br  from-rose-500 to-pink-500 flex items-center justify-center text-white font-bold !mr-4 shadow-lg">
                   <span className="text-xl">A</span>
@@ -279,10 +317,10 @@ const About = () => {
       </div>
 
       {/* Contact Section */}
-      <div className="!py-20 px-4 !md:px-8 !lg:px-16">
+      <div className="!py-20 px-4 !md:px-8 !lg:px-16  translate-y-40">
         <div className=" mx-auto">
           <div className="mb-12 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 opacity-0 animate-fadeIn">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 opacity-0 animate-fadeIn blur-animate-heading">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-pink-200">
                 Get In Touch
               </span>
@@ -290,7 +328,7 @@ const About = () => {
           </div>
 
           <div className="flex justify-center items-center flex-col md:flex-row w-full gap-8 !mt-20">
-            <div className=" w-100 bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-100  hover:shadow-pink-500/20 text-center backdrop-blur-md">
+            <div className=" w-100 bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-100  hover:shadow-pink-500/20 text-center backdrop-blur-md fade-animate-card">
               <div className="w-16 h-16  bg-gradient-to-br from-pink-700/20 to-pink-800 rounded-full flex items-center justify-center !mx-auto !mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -313,7 +351,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className=" w-100 bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-300  hover:shadow-pink-500/20 text-center backdrop-blur-md">
+            <div className=" w-100 bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-300  hover:shadow-pink-500/20 text-center backdrop-blur-md fade-animate-card">
               <div className="w-16 h-16 bg-gradient-to-br from-pink-700/20 to-pink-800 rounded-full flex items-center justify-center !mx-auto !mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -334,7 +372,7 @@ const About = () => {
               <p className="text-pink-400 font-medium">+91 98765 43210</p>
             </div>
 
-            <div className=" w-100 bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-500 hover:shadow-pink-500/20 text-center backdrop-blur-md">
+            <div className=" w-100 bg-gradient-to-br from-pink-700/20 to-pink-800 !p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 opacity-0 animate-fadeIn delay-500 hover:shadow-pink-500/20 text-center backdrop-blur-md fade-animate-card">
               <div className="w-16 h-16 bg-gradient-to-br from-pink-700/20 to-pink-800 rounded-full flex items-center justify-center !mx-auto !mb-6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -364,6 +402,12 @@ const About = () => {
           </div>
         </div>
       </div>
+      <div ref={parentDivRed} className="w-[100%] mx-auto h-[600vh]  translate-y-30">
+        <div className="w-full h-screen sticky left-0 top-0">
+          <canvas ref={canvasRef} className="w-full h-screen"></canvas>
+        </div>
+      </div>
+
     </div>
   );
 };
