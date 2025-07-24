@@ -134,7 +134,7 @@ export default function RegisterPage() {
                 placeholder="  Full Name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-80 pl-10 pr-4 h-12 py-3 !mt-8 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
+                className="w-80 !pl-4  h-12 py-3 !mt-8 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
                 required
                 whileFocus={{ 
                   boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
@@ -156,7 +156,7 @@ export default function RegisterPage() {
                 placeholder="  Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-80 pl-10 pr-4 h-12 py-3 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
+                className="w-80 !pl-4  h-12 py-3 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
                 required
                 whileFocus={{ 
                   boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
@@ -178,7 +178,7 @@ export default function RegisterPage() {
                 placeholder="  Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className=" w-80 pl-10 pr-4 py-3 h-12 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
+                className=" w-80 !pl-4  py-3 h-12 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
                 required
                 whileFocus={{ 
                   boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
@@ -200,7 +200,7 @@ export default function RegisterPage() {
                 placeholder="  Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-80 pl-10 pr-4 py-3 h-12 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
+                className="w-80 !pl-4  py-3 h-12 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
                 required
                 whileFocus={{ 
                   boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",

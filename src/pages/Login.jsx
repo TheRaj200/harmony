@@ -128,7 +128,7 @@ export default function LoginPage() {
                 placeholder="  Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 h-12 py-3 !mt-8 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
+                className="w-full !pl-3  h-12 py-3 !mt-8 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
                 required
                 whileFocus={{ 
                   boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
@@ -150,7 +150,7 @@ export default function LoginPage() {
                 placeholder="  Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 h-12 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
+                className="w-full !pl-3 py-3 h-12 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
                 required
                 whileFocus={{ 
                   boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
@@ -200,12 +200,11 @@ export default function LoginPage() {
             >
               {isLoading ? (
                 <motion.div
-                  className="flex items-center justify-center"
-                  animate={{ rotate: 360 }}
+                  className="flex items-center justify-center"   
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 >
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  <span className="ml-2">Signing in...</span>
+                  <span className="!ml-2">Signing in...</span>
                 </motion.div>
               ) : (
                 <Link

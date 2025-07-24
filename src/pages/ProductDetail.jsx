@@ -86,7 +86,7 @@ const ProductDetail = () => {
               transition={{ duration: 0.7 }}
               className="relative w-full max-w-md mx-auto"
             >
-              <div className="relative  p-6 rounded-3xl ">
+              <div className="relative scale-80 md:scale-90  p-6 rounded-3xl ">
                 <motion.img
                   ref={imgRef}
                   src={(productDetails && productDetails.image) || selectedProduct.image || selectedProduct.main}
@@ -179,7 +179,7 @@ const ProductDetail = () => {
                   </motion.button>
                   
                   <motion.div 
-                    key={quantity} // This triggers animation on quantity change
+                    key={quantity} 
                     initial={{ scale: 0.8, opacity: 0.5 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.2 }}
@@ -205,7 +205,7 @@ const ProductDetail = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6, type: "spring", stiffness: 80 }}
-              className="flex flex-col sm:flex-row !p-5 md:w-[85%] gap-4 pt-6"
+              className="flex flex-col md:flex-row h-40 !p-5 !md:w-[85%] !lg:w-[75%] gap-4 pt-6"
             >
               <motion.button
                 whileHover={{ scale: 1.03, boxShadow: "0 10px 25px -5px rgba(50, 192, 194, 0.4)" }}
