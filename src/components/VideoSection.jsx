@@ -52,7 +52,7 @@ const VideoSection = () => {
           }}
         >
           <video
-            src="./videos/v1.mp4"
+            src="/videos/v1.mp4"
             className="w-full h-full object-cover"
             autoPlay
             muted
