@@ -174,7 +174,7 @@ const ProductsPage = () => {
         <div className='w-full bg-[#fbf3f6] h-[600px] block '></div>
         <img className='w-full h-180 opacity-95 rotate-180' src="/images/svg2.png" alt="" />
 
-        {/* Swiper slider in the same position as the product grid */}
+        {/* Swiper slider  */}
         <div className='absolute top-80 md:top-65 xl:top-85 2xl:top-110 w-full flex justify-center gap-8 mt-12'>
           <Swiper
             modules={[Autoplay]}
@@ -204,7 +204,7 @@ const ProductsPage = () => {
                     exit={product.exit}
                     onMouseEnter={() => handleMouseEnter(idx)}
                     onMouseLeave={() => handleMouseLeave(idx)}
-                    onClick={() => handleProductClick(product.id)} // प्रोडक्ट पर क्लिक करने पर हैंडलर
+                    onClick={() => handleProductClick(product.id)} 
                   />
                   {/* Product name and price below image */}
                   <div className="mt-40 text-center w-full z-90 ">
@@ -255,9 +255,9 @@ const ProductsPage = () => {
                       exit={product.exit}
                       onMouseEnter={() => handleMakhanaMouseEnter(idx)}
                       onMouseLeave={() => handleMakhanaMouseLeave(idx)}
-                      onClick={() => handleProductClick(product.id)} // प्रोडक्ट पर क्लिक करने पर हैंडलर
+                      onClick={() => handleProductClick(product.id)} 
                     />
-                    {/* Product name and price below image */}
+                    {/* Product name and price  */}
                     <div className="mt-40 text-center w-full z-90 ">
                       <div className="text-lg md:text-xl font-semibold text-[#0a2233] mb-1">{product.name}</div>
                       <div className="text-base md:text-lg font-bold text-[#32c0c2]">₹{product.price}</div>

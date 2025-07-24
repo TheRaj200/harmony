@@ -1,14 +1,14 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { HiMenu, HiX } from 'react-icons/hi';
-import Wave from 'react-wavify';
+import React, { useRef, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiMenu, HiX } from "react-icons/hi";
+import Wave from "react-wavify";
 
 const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/products', label: 'Products' },
-  { to: '/about', label: 'About' },
-  { to: '/login', label: 'Login' },
+  { to: "/", label: "Home" },
+  { to: "/products", label: "Products" },
+  { to: "/about", label: "About" },
+  { to: "/login", label: "Login" },
 ];
 
 const Nav = ({ animateNav }) => {
@@ -19,15 +19,13 @@ const Nav = ({ animateNav }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Find active index based on current path
-    const activeIdx = navLinks.findIndex(link => {
-      // Check if current path is exactly the link path
+    const activeIdx = navLinks.findIndex((link) => {
       if (link.to === location.pathname) return true;
-      // For products, also check if current path starts with /products/
-      if (link.to === '/products' && location.pathname.startsWith('/products/')) return true;
+      if (link.to === "/products" && location.pathname.startsWith("/products/"))
+        return true;
       return false;
     });
-    
+
     if (navRefs.current[activeIdx]) {
       const el = navRefs.current[activeIdx];
       setIndicatorStyle({
@@ -38,7 +36,6 @@ const Nav = ({ animateNav }) => {
     }
   }, [location.pathname]);
 
-  // Helper to get nav link height for indicator
   const [linkHeight, setLinkHeight] = useState(0);
   useEffect(() => {
     if (navRefs.current[0]) {
@@ -46,16 +43,15 @@ const Nav = ({ animateNav }) => {
     }
   }, [navRefs, location.pathname]);
 
-  // Framer Motion variant for the whole navbar
   const navVariant = {
     hidden: { opacity: 0, y: -60 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        delay: .1, // 2 seconds delay before animation starts
+        delay: 0.1,
         duration: 0.7,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     },
   };
@@ -69,10 +65,17 @@ const Nav = ({ animateNav }) => {
         animate="visible"
       >
         {/* Logo */}
-        <div className="flex items-center  select-none" style={{height: linkHeight ? linkHeight : 48}}>
-          <img className='h-8 object-contain ' src="/images/logo.avif" alt="Harmony Logo" />
+        <div
+          className="flex items-center  select-none"
+          style={{ height: linkHeight ? linkHeight : 48 }}
+        >
+          <img
+            className="h-8 object-contain "
+            src="/images/logo.avif"
+            alt="Harmony Logo"
+          />
         </div>
-        {/* Hamburger Menu Button (Mobile Only) */}
+
         <button
           className="md:hidden ml-auto p-2 text-[#f55d81]"
           onClick={() => setIsMobileMenuOpen(true)}
@@ -80,42 +83,54 @@ const Nav = ({ animateNav }) => {
         >
           <HiMenu size={32} />
         </button>
-        {/* Nav Links (Desktop Only) */}
-        <div className="relative hidden md:flex items-center" style={{minHeight: linkHeight ? linkHeight : 48}}>
+        {/* Nav Links Desktop  */}
+        <div
+          className="relative hidden md:flex items-center"
+          style={{ minHeight: linkHeight ? linkHeight : 48 }}
+        >
           {/* Animated Indicator */}
           {indicatorStyle.width && (
             <span
               className="absolute rounded-full z-0 transition-all duration-300 shadow"
               style={{
-                left: indicatorStyle.left-8,
-                width: indicatorStyle.width+20,
-                height: linkHeight ? linkHeight +5 : 70,
+                left: indicatorStyle.left - 8,
+                width: indicatorStyle.width + 20,
+                height: linkHeight ? linkHeight + 5 : 70,
                 top: -2,
-                background: '#f55d81 ',
-                transition: 'all 0.3s cubic-bezier(.4,2,.6,1)',
-                boxShadow: '0 2px 12px 0 rgba(255, 119, 153, 0.10)',
+                background: "#f55d81 ",
+                transition: "all 0.3s cubic-bezier(.4,2,.6,1)",
+                boxShadow: "0 2px 12px 0 rgba(255, 119, 153, 0.10)",
                 opacity: 0.9,
               }}
             />
           )}
           {/* Nav Links */}
-          <div className="flex gap-6 md:gap-10 z-10 items-center  " style={{minHeight: linkHeight ? linkHeight : 40}}>
+          <div
+            className="flex gap-6 md:gap-10 z-10 items-center  "
+            style={{ minHeight: linkHeight ? linkHeight : 40 }}
+          >
             {navLinks.map((link, idx) => {
-              // Check if this link is active
-              const isActive = link.to === location.pathname || 
-                (link.to === '/products' && location.pathname.startsWith('/products/'));
-                
+              // Check  link is active
+              const isActive =
+                link.to === location.pathname ||
+                (link.to === "/products" &&
+                  location.pathname.startsWith("/products/"));
+
               return (
                 <Link
                   key={link.to}
                   to={link.to}
-                  ref={el => (navRefs.current[idx] = el)}
+                  ref={(el) => (navRefs.current[idx] = el)}
                   className={`relative px-6 py-2  rounded-full font-semibold transition-colors duration-200 flex items-center
-                    ${isActive ? 'text-white' : 'text-gray-800 hover:text-pink-600'}
+                    ${
+                      isActive
+                        ? "text-white"
+                        : "text-gray-800 hover:text-pink-600"
+                    }
                   `}
                   style={{
-                    background: isActive ? 'transparent' : 'transparent',
-                    boxShadow: isActive ? 'none' : 'none',
+                    background: isActive ? "transparent" : "transparent",
+                    boxShadow: isActive ? "none" : "none",
                   }}
                 >
                   {link.label}
@@ -125,16 +140,23 @@ const Nav = ({ animateNav }) => {
           </div>
         </div>
       </motion.nav>
-      {/* Mobile Fullscreen Wave Menu Overlay */}
+      {/* Mobile Fullscreen Wave Menu  */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             className="fixed inset-0 z-90 flex text flex-col items-center justify-center w-screen h-screen md:hidden"
-            initial={{ y: '-100%', opacity: 1 }}
-            animate={{ y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } }}
-            exit={{ y: '-100%', opacity: 1, transition: { duration: 0.4, ease: 'easeIn' } }}
+            initial={{ y: "-100%", opacity: 1 }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: { duration: 0.6, ease: "easeOut" },
+            }}
+            exit={{
+              y: "-100%",
+              opacity: 1,
+              transition: { duration: 0.4, ease: "easeIn" },
+            }}
           >
-            {/* Animated Wave at the top, like LoadingScreen */}
             <div className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none select-none">
               <Wave
                 fill="#32c0c2"
@@ -148,7 +170,7 @@ const Nav = ({ animateNav }) => {
                 className="absolute w-full rotate-[180deg] h-full"
               />
             </div>
-            {/* Menu Content above the wave */}
+
             <div className="relative z-20 flex flex-col items-start justify-start w-full h-full ">
               <button
                 className="self-end mb-8 mt-4 mr-6 !p-12 text-white text-3xl hover:text-pink-500"
@@ -159,15 +181,20 @@ const Nav = ({ animateNav }) => {
               </button>
               <div className="flex flex-col items-center justify-center w-full gap-5 ">
                 {navLinks.map((link) => {
-                  // Also update the mobile menu active state
-                  const isActive = link.to === location.pathname || 
-                    (link.to === '/products' && location.pathname.startsWith('/products/'));
-                    
+                  const isActive =
+                    link.to === location.pathname ||
+                    (link.to === "/products" &&
+                      location.pathname.startsWith("/products/"));
+
                   return (
                     <Link
                       key={link.to}
                       to={link.to}
-                      className={`w-full text-center !py-2 my-2 rounded-lg font-bold text-3xl  transition-colors duration-200 ${isActive ? 'bg-[#f55d81] text-white' : 'text-white hover:bg-[#f55d81]/10'}`}
+                      className={`w-full text-center !py-2 my-2 rounded-lg font-bold text-3xl  transition-colors duration-200 ${
+                        isActive
+                          ? "bg-[#f55d81] text-white"
+                          : "text-white hover:bg-[#f55d81]/10"
+                      }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {link.label}

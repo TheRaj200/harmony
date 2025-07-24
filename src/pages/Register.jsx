@@ -19,7 +19,7 @@ export default function RegisterPage() {
       return;
     }
     setIsLoading(true);
-    // Simulate API call
+
     setTimeout(() => {
       setIsLoading(false);
       console.log('Registration attempt:', { fullName, email, password, agreeTerms });

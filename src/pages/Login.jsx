@@ -1,28 +1,26 @@
-
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { link } from 'framer-motion/m';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { link } from "framer-motion/m";
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      console.log('Login attempt:', { email, password, rememberMe });
+      console.log("Login attempt:", { email, password, rememberMe });
     }, 2000);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Animated Background Elements */}
+      {/* Animated Background  */}
       <motion.div
         className="absolute inset-0 opacity-20"
         animate={{
@@ -104,7 +102,9 @@ export default function LoginPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h1 className="text-5xl font-bold text-purple-800 mb-2 font-pacifico text">HARMONY</h1>
+            <h1 className="text-5xl font-bold text-purple-800 mb-2 font-pacifico text">
+              HARMONY
+            </h1>
             <p className="text-purple-600 text !mt-4">Welcome back to luxury</p>
           </motion.div>
 
@@ -122,7 +122,7 @@ export default function LoginPage() {
             >
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <i className="ri-mail-line text-purple-500 w-5 h-5 flex items-center justify-center"></i>
-              </div> 
+              </div>
               <motion.input
                 type="email"
                 placeholder="  Email address"
@@ -130,9 +130,9 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full !pl-3  h-12 py-3 !mt-8 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
                 required
-                whileFocus={{ 
+                whileFocus={{
                   boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
-                  borderColor: "#8b5cf6"
+                  borderColor: "#8b5cf6",
                 }}
               />
             </motion.div>
@@ -152,9 +152,9 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full !pl-3 py-3 h-12 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
                 required
-                whileFocus={{ 
+                whileFocus={{
                   boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
-                  borderColor: "#8b5cf6"
+                  borderColor: "#8b5cf6",
                 }}
               />
             </motion.div>
@@ -176,7 +176,9 @@ export default function LoginPage() {
                   onChange={(e) => setRememberMe(e.target.checked)}
                   className="w-4 h-4 text-purple-600 border-2 border-purple-300 rounded focus:ring-purple-500 focus:ring-2"
                 />
-                <span className="!ml-2 text-sm text-purple-700">Remember me</span>
+                <span className="!ml-2 text-sm text-purple-700">
+                  Remember me
+                </span>
               </motion.label>
               <motion.a
                 href="#"
@@ -192,7 +194,10 @@ export default function LoginPage() {
               type="submit"
               disabled={isLoading}
               className="w-full !mt-4 py-3 h-10 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 whitespace-nowrap"
-              whileHover={{ scale: 1.02, boxShadow: "0 8px 25px rgba(147, 51, 234, 0.3)" }}
+              whileHover={{
+                scale: 1.02,
+                boxShadow: "0 8px 25px rgba(147, 51, 234, 0.3)",
+              }}
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -200,16 +205,14 @@ export default function LoginPage() {
             >
               {isLoading ? (
                 <motion.div
-                  className="flex items-center justify-center"   
+                  className="flex items-center justify-center"
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 >
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   <span className="!ml-2">Signing in...</span>
                 </motion.div>
               ) : (
-                <Link
-                className=''
-                to="/products">
+                <Link className="" to="/products">
                   Log In
                 </Link>
               )}
@@ -222,7 +225,7 @@ export default function LoginPage() {
               transition={{ duration: 0.6, delay: 1 }}
             >
               <p className="text-sm text-purple-600 !mt-4">
-                Don't have an account?{' '}
+                Don't have an account?{" "}
                 <Link to="/register">
                   <motion.span
                     className="font-semibold text-purple-800 hover:text-purple-900 transition-colors duration-200"

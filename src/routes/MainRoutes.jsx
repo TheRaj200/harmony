@@ -10,9 +10,9 @@ import Footer from '../components/Footer';
 import RegisterPage from '../pages/Register';
 
 const MainRoutes = () => {
-  // Use useLocation hook to get current path
+
   const location = useLocation();
-  // Check if current path is about page
+ 
   const isAboutPage = location.pathname === '/about';
   
   return (

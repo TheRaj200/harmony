@@ -1,4 +1,3 @@
-/* Animation styles for About page */
 
 @keyframes fadeIn {
   from {
@@ -66,13 +65,11 @@
   animation-delay: 500ms;
 }
 
-/* Apply animations when elements enter viewport */
+
 .opacity-0 {
   opacity: 0;
 }
 
-/* Add IntersectionObserver functionality via JavaScript */
-/* This will be handled by the scroll trigger in the component */
 
 /* Smooth scrolling for the entire page */
 html {

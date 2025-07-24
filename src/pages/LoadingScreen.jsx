@@ -23,11 +23,9 @@ const LoadingScreen = () => {
     let timeout;
     function updatePercent() {
       if (current < 100) {
-        // Random increment between 1 and 7
         const increment = Math.floor(Math.random() * 7) + 1;
         current = Math.min(current + increment, 100);
         setPercent(current);
-        // Random delay between 30ms and 120ms
         const delay = Math.floor(Math.random() * 90) + 30;
         timeout = setTimeout(updatePercent, delay);
       }
@@ -60,22 +58,20 @@ const LoadingScreen = () => {
             </div>
           </div>
           <h2 className="text-5xl text-center text-[#fff] tracking-wide z-20 font-semibold w-full flex  items-center justify-center">
-            Loading  
-              <div className="flex !mt-10 !space-x-3 !ml-4 !mb-5 z-20">
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                ref={(el) => (dotsRef.current[i] = el)}
-                className="block w-4 h-4 rounded-full bg-[#fff]"
-              ></span>
-            ))}
-          </div>
+            Loading
+            <div className="flex !mt-10 !space-x-3 !ml-4 !mb-5 z-20">
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  ref={(el) => (dotsRef.current[i] = el)}
+                  className="block w-4 h-4 rounded-full bg-[#fff]"
+                ></span>
+              ))}
+            </div>
           </h2>
-       
         </div>
       </div>
 
-      {/* White area at the bottom */}
       <div className="absolute left-0 bottom-0 w-full h-[30vh]  z-10" />
 
       {/* Wave at the bottom */}
