@@ -1,22 +1,28 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { link } from 'framer-motion/m';
 import { Link } from 'react-router-dom';
 
-export default function LoginPage() {
+export default function RegisterPage() {
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [agreeTerms, setAgreeTerms] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
     setIsLoading(true);
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      console.log('Login attempt:', { email, password, rememberMe });
+      console.log('Registration attempt:', { fullName, email, password, agreeTerms });
     }, 2000);
   };
 
@@ -105,7 +111,7 @@ export default function LoginPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h1 className="text-5xl font-bold text-purple-800 mb-2 font-pacifico text">HARMONY</h1>
-            <p className="text-purple-600 text !mt-4">Welcome back to luxury</p>
+            <p className="text-purple-600 text !mt-4">Join our luxury experience</p>
           </motion.div>
 
           <motion.form
@@ -121,6 +127,28 @@ export default function LoginPage() {
               whileFocus={{ scale: 1.02 }}
             >
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i className="ri-user-line text-purple-500 w-5 h-5 flex items-center justify-center"></i>
+              </div> 
+              <motion.input
+                type="text"
+                placeholder="  Full Name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                className="w-80 pl-10 pr-4 h-12 py-3 !mt-8 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
+                required
+                whileFocus={{ 
+                  boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
+                  borderColor: "#8b5cf6"
+                }}
+              />
+            </motion.div>
+
+            <motion.div
+              className="relative"
+              whileHover={{ scale: 1.02 }}
+              whileFocus={{ scale: 1.02 }}
+            >
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <i className="ri-mail-line text-purple-500 w-5 h-5 flex items-center justify-center"></i>
               </div> 
               <motion.input
@@ -128,7 +156,7 @@ export default function LoginPage() {
                 placeholder="  Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 h-12 py-3 !mt-8 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
+                className="w-80 pl-10 pr-4 h-12 py-3 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
                 required
                 whileFocus={{ 
                   boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
@@ -150,7 +178,29 @@ export default function LoginPage() {
                 placeholder="  Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 h-12 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
+                className=" w-80 pl-10 pr-4 py-3 h-12 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
+                required
+                whileFocus={{ 
+                  boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
+                  borderColor: "#8b5cf6"
+                }}
+              />
+            </motion.div>
+
+            <motion.div
+              className="relative"
+              whileHover={{ scale: 1.02 }}
+              whileFocus={{ scale: 1.02 }}
+            >
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i className="ri-lock-line text-purple-500 w-5 h-5 flex items-center justify-center"></i>
+              </div>
+              <motion.input
+                type="password"
+                placeholder="  Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-80 pl-10 pr-4 py-3 h-12 !mt-2 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-all duration-300 bg-white/90 backdrop-blur-sm"
                 required
                 whileFocus={{ 
                   boxShadow: "0 0 0 3px rgba(147, 51, 234, 0.1)",
@@ -172,20 +222,12 @@ export default function LoginPage() {
               >
                 <input
                   type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
+                  checked={agreeTerms}
+                  onChange={(e) => setAgreeTerms(e.target.checked)}
                   className="w-4 h-4 text-purple-600 border-2 border-purple-300 rounded focus:ring-purple-500 focus:ring-2"
                 />
-                <span className="!ml-2 text-sm text-purple-700">Remember me</span>
+                <span className="!ml-2 text-sm text-purple-700">I agree to the Terms and Privacy Policy</span>
               </motion.label>
-              <motion.a
-                href="#"
-                className="text-sm text-purple-600 hover:text-purple-800 transition-colors duration-200"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Forgot password?
-              </motion.a>
             </motion.div>
 
             <motion.button
@@ -211,7 +253,7 @@ export default function LoginPage() {
                 <Link
                 className=''
                 to="/products">
-                  Log In
+                  Register Now
                 </Link>
               )}
             </motion.button>
@@ -223,14 +265,14 @@ export default function LoginPage() {
               transition={{ duration: 0.6, delay: 1 }}
             >
               <p className="text-sm text-purple-600 !mt-4">
-                Don't have an account?{' '}
-                <Link to="/register">
+                Already have an account?{' '}
+                <Link to="/login">
                   <motion.span
                     className="font-semibold text-purple-800 hover:text-purple-900 transition-colors duration-200"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Register
+                    Log In
                   </motion.span>
                 </Link>
               </p>

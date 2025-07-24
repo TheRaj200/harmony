@@ -19,7 +19,15 @@ const Nav = ({ animateNav }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const activeIdx = navLinks.findIndex(link => link.to === location.pathname);
+    // Find active index based on current path
+    const activeIdx = navLinks.findIndex(link => {
+      // Check if current path is exactly the link path
+      if (link.to === location.pathname) return true;
+      // For products, also check if current path starts with /products/
+      if (link.to === '/products' && location.pathname.startsWith('/products/')) return true;
+      return false;
+    });
+    
     if (navRefs.current[activeIdx]) {
       const el = navRefs.current[activeIdx];
       setIndicatorStyle({
@@ -62,7 +70,7 @@ const Nav = ({ animateNav }) => {
       >
         {/* Logo */}
         <div className="flex items-center  select-none" style={{height: linkHeight ? linkHeight : 48}}>
-          <img className='h-8 object-contain ' src="./images/logo.avif" alt="" />
+          <img className='h-8 object-contain ' src="/images/logo.avif" alt="Harmony Logo" />
         </div>
         {/* Hamburger Menu Button (Mobile Only) */}
         <button
@@ -93,7 +101,10 @@ const Nav = ({ animateNav }) => {
           {/* Nav Links */}
           <div className="flex gap-6 md:gap-10 z-10 items-center" style={{minHeight: linkHeight ? linkHeight : 40}}>
             {navLinks.map((link, idx) => {
-              const isActive = location.pathname === link.to;
+              // Check if this link is active
+              const isActive = link.to === location.pathname || 
+                (link.to === '/products' && location.pathname.startsWith('/products/'));
+                
               return (
                 <Link
                   key={link.to}
@@ -147,16 +158,22 @@ const Nav = ({ animateNav }) => {
                 <HiX size={36} />
               </button>
               <div className="flex flex-col items-center justify-center w-full gap-5 ">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    className={`w-full text-center !py-2 my-2 rounded-lg font-bold text-3xl  transition-colors duration-200 ${location.pathname === link.to ? 'bg-[#f55d81] text-white' : 'text-white hover:bg-[#f55d81]/10'}`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {navLinks.map((link) => {
+                  // Also update the mobile menu active state
+                  const isActive = link.to === location.pathname || 
+                    (link.to === '/products' && location.pathname.startsWith('/products/'));
+                    
+                  return (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      className={`w-full text-center !py-2 my-2 rounded-lg font-bold text-3xl  transition-colors duration-200 ${isActive ? 'bg-[#f55d81] text-white' : 'text-white hover:bg-[#f55d81]/10'}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
