@@ -99,7 +99,7 @@ const Nav = ({ animateNav }) => {
             />
           )}
           {/* Nav Links */}
-          <div className="flex gap-6 md:gap-10 z-10 items-center" style={{minHeight: linkHeight ? linkHeight : 40}}>
+          <div className="flex gap-6 md:gap-10 z-10 items-center  " style={{minHeight: linkHeight ? linkHeight : 40}}>
             {navLinks.map((link, idx) => {
               // Check if this link is active
               const isActive = link.to === location.pathname || 
@@ -110,7 +110,7 @@ const Nav = ({ animateNav }) => {
                   key={link.to}
                   to={link.to}
                   ref={el => (navRefs.current[idx] = el)}
-                  className={`relative px-6 py-2 rounded-full font-semibold transition-colors duration-200 flex items-center
+                  className={`relative px-6 py-2  rounded-full font-semibold transition-colors duration-200 flex items-center
                     ${isActive ? 'text-white' : 'text-gray-800 hover:text-pink-600'}
                   `}
                   style={{
@@ -129,7 +129,7 @@ const Nav = ({ animateNav }) => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-90 flex flex-col items-center justify-center w-screen h-screen md:hidden"
+            className="fixed inset-0 z-90 flex text flex-col items-center justify-center w-screen h-screen md:hidden"
             initial={{ y: '-100%', opacity: 1 }}
             animate={{ y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } }}
             exit={{ y: '-100%', opacity: 1, transition: { duration: 0.4, ease: 'easeIn' } }}

@@ -43,7 +43,7 @@ const ThreeDImage = ({ src, alt, className, entry, exit, ...rest }) => {
     rotateY.set(0);
   };
 
-  // Extract initial values from entry prop for hidden state
+  // Extract initial values
   const hidden = {
     scale: entry?.scale ?? 0.6,
     rotate: entry?.rotate ?? 0,
@@ -87,170 +87,20 @@ const ThreeDImage = ({ src, alt, className, entry, exit, ...rest }) => {
   );
 };
 
-const productShowcase = [
-  {
-    main: '/images/c2.png',
-    bg: '/images/c6.png',
-    name:'Classic Chocolate Bar',
-    alt: 'Classic Chocolate Bar',
-    price:249,
-    entry: { scale: 0.6, rotate: -15, opacity: 0, transition: { duration: 2, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: -15, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-  {
-    main: '/images/nut1.png',
-    bg: '/images/nut2.png',
-    alt: 'Nutty Crunch',
-    name: 'Nutty Crunch',
-    price:249,
-    entry: { scale: 0.6, rotate: 10, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: 10, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-    bgClass: 'rotate-180',
-  },
-  {
-    main: '/images/berry1.png',
-    bg: '/images/berry2.png',
-    alt: 'Berry Bliss',
-    name: 'Berry Bliss',
-    price:249,
-    entry: { scale: 0.6, rotate: 15, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: 15, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-  {
-    main: '/images/bar1.png',
-    bg: '/images/c3.png',
-    alt: 'Signature Bar',
-    name: 'Signature Bar',
-    price:249,
-    entry: { scale: 0.6, rotate: -10, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: -10, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-  {
-    main: '/images/c2.png',
-    bg: '/images/c6.png',
-    alt: 'Nutty Crunch',
-    name: 'Nutty Crunch',
-    price:249,
-    entry: { scale: 0.6, rotate: 8, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: 8, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-  {
-      main: '/images/nut1.png',
-    bg: '/images/nut2.png',
- alt: 'Nutty Crunch',
-    name: 'Nutty Crunch',
-    price:249,
-    entry: { scale: 0.6, rotate: -8, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: -8, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-  {
-      main: '/images/berry1.png',
-    bg: '/images/berry2.png',
-   alt: 'Berry Bliss',
-    name: 'Berry Bliss',
-    price:249,
-    entry: { scale: 0.6, rotate: 12, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: 12, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-  {
- main: '/images/bar1.png',
-    bg: '/images/c3.png',
-   alt: 'Signature Bar',
-    name: 'Signature Bar',
-    price:249,
-    entry: { scale: 0.6, rotate: -12, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: -12, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-];
 
-// नया मखाना प्रोडक्ट शोकेस अरे
-const makhanaShowcase = [
-  {
-    main: '/images/mk1.png',
-    bg: '/images/c6.png',
-    name: 'Classic Makhana',
-    alt: 'Classic Makhana',
-    price: 199,
-    entry: { scale: 0.6, rotate: -15, opacity: 0, transition: { duration: 2, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: -15, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-  {
-    main: '/images/mk2.png',
-    bg: '/images/nut2.png',
-    alt: 'Spicy Makhana',
-    name: 'Spicy Makhana',
-    price: 219,
-    entry: { scale: 0.6, rotate: 10, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: 10, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-    bgClass: 'rotate-180',
-  },
-  {
-    main: '/images/mk3.png',
-    bg: '/images/berry2.png',
-    alt: 'Sweet Makhana',
-    name: 'Sweet Makhana',
-    price: 229,
-    entry: { scale: 0.6, rotate: 15, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: 15, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-  {
-    main: '/images/mk1.png',
-    bg: '/images/c3.png',
-    alt: 'Premium Makhana',
-    name: 'Premium Makhana',
-    price: 249,
-    entry: { scale: 0.6, rotate: -10, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: -10, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-    {
-    main: '/images/mk1.png',
-    bg: '/images/c6.png',
-    name: 'Classic Makhana',
-    alt: 'Classic Makhana',
-    price: 199,
-    entry: { scale: 0.6, rotate: -15, opacity: 0, transition: { duration: 2, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: -15, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-  {
-    main: '/images/mk2.png',
-    bg: '/images/nut2.png',
-    alt: 'Spicy Makhana',
-    name: 'Spicy Makhana',
-    price: 219,
-    entry: { scale: 0.6, rotate: 10, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: 10, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-    bgClass: 'rotate-180',
-  },
-  {
-    main: '/images/mk3.png',
-    bg: '/images/berry2.png',
-    alt: 'Sweet Makhana',
-    name: 'Sweet Makhana',
-    price: 229,
-    entry: { scale: 0.6, rotate: 15, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: 15, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-  {
-    main: '/images/mk1.png',
-    bg: '/images/c3.png',
-    alt: 'Premium Makhana',
-    name: 'Premium Makhana',
-    price: 249,
-    entry: { scale: 0.6, rotate: -10, opacity: 0, transition: { duration: 1, type: 'spring', bounce: 0.45 } },
-    exit: { scale: 0.6, rotate: -10, opacity: 0, transition: { duration: 0.7, ease: 'easeIn' } },
-  },
-];
+
+
 
 const ProductsPage = () => {
-  // Redux से डेटा प्राप्त करें
+
   const { productShowcase, makhanaShowcase, hoverStates } = useSelector(state => state.products);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // राउटिंग के लिए useNavigate हुक का उपयोग
+  const navigate = useNavigate(); 
   
-  // प्रोडक्ट पर क्लिक करने पर प्रोडक्ट डिटेल पेज पर नेविगेट करने के लिए हैंडलर
+
   const handleProductClick = (productId) => {
-    dispatch(setSelectedProduct(productId)); // Redux में सिलेक्टेड प्रोडक्ट सेट करें
-    navigate(`/products/product/${productId}`); // प्रोडक्ट ID के साथ नेविगेट करें
+    dispatch(setSelectedProduct(productId)); 
+    navigate(`/products/product/${productId}#`); 
   };
   
   const containerVariants = {
@@ -281,7 +131,7 @@ const ProductsPage = () => {
     }
   }, [inView, controls]);
 
-  // Redux एक्शन डिस्पैच करने के लिए हैंडलर अपडेट करें
+  // Redux 
   const handleMouseEnter = (idx) => {
     dispatch(setProductHover({ index: idx, isHovered: true, type: 'products' }));
   };
@@ -300,7 +150,7 @@ const ProductsPage = () => {
 
   return (
     <section>
-      <div className='w-full h-full overflow-x-hidden relative min-h-screen bg-[#fcf3f6]'>
+      <div className='w-full h-full overflow-x-hidden relative min-h-screen 'style={{ background: 'linear-gradient(135deg, #f55d81 0%, #e91e63 25%, #c2185b 50%, #ad1457 75%, #880e4f 100%)' }}>
         {/* Curved text above heading */}
         <motion.h1
           ref={h1Ref}
@@ -321,7 +171,7 @@ const ProductsPage = () => {
           ))}
         </motion.h1>
         <img className='w-full opacity-95' src="/images/svg2.png" alt="" />
-        <div className='w-full bg-[#ffffff] h-[600px] block '></div>
+        <div className='w-full bg-[#fbf3f6] h-[600px] block '></div>
         <img className='w-full h-180 opacity-95 rotate-180' src="/images/svg2.png" alt="" />
 
         {/* Swiper slider in the same position as the product grid */}
