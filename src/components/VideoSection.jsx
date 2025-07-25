@@ -7,43 +7,52 @@ gsap.registerPlugin(ScrollTrigger);
 const VideoSection = () => {
   const sectionRef = useRef(null);
   const videoWrapperRef = useRef(null);
-  const videoPinRef = useRef(null);
 
   useLayoutEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true,
-        pin: videoPinRef.current,
-      },
-    });
-
-    tl.fromTo(
-      videoWrapperRef.current,
-      { scale: 0.4, borderRadius: "2rem" },
-      { scale: 1, borderRadius: "0rem", ease: "power1.inOut" }
-    );
+    let ctx;
+    if (sectionRef.current && videoWrapperRef.current) {
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+        tl.fromTo(
+          videoWrapperRef.current,
+          { scale: 0.4, borderRadius: "2rem" },
+          { scale: 1, borderRadius: "0rem", ease: "power1.inOut" }
+        );
+      }, sectionRef);
+    }
+ 
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      // Cleanup GSAP and ScrollTrigger instances
-      if (tl) tl.kill();
+      window.removeEventListener("resize", handleResize);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      if (ctx) ctx.revert();
     };
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-[200vh] md:h-[300vh] w-full"
+      className="relative h-[100vh] md:h-[100vh] w-full"
       style={{
         background:
           "linear-gradient(135deg, #32c0c2 0%, #1fa2ff 50%, #0b486b 100%)",
       }}
     >
       <div
-        ref={videoPinRef}
         className="h-screen w-screen flex items-center justify-center overflow-hidden"
       >
         <div

@@ -100,7 +100,7 @@ const products = [
       opacity: 0,
       transition: { duration: 1.2, type: "spring", bounce: 0.45 },
     },
-    bg: "/images/c6.png",
+    bg: "/images/mkbg.png",
     bgClass: "rotate-12",
   },
   {
@@ -113,7 +113,7 @@ const products = [
       opacity: 0,
       transition: { duration: 1.2, type: "spring", bounce: 0.45 },
     },
-    bg: "/images/nut2.png",
+    bg: "/images/mkbg2.png",
     bgClass: "rotate-180",
   },
   {
@@ -126,7 +126,7 @@ const products = [
       opacity: 0,
       transition: { duration: 1.2, type: "spring", bounce: 0.45 },
     },
-    bg: "/images/berry2.png",
+    bg: "/images/mkbg3.png",
     bgClass: "",
   },
 ];
@@ -218,7 +218,7 @@ const NewProducts = () => {
               className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] md:w-[320px] max-w-[90vw] z-0 ${
                 product.bgClass
               } pointer-events-none select-none transition-transform duration-500 ${
-                hoverIdx === idx ? "scale-100" : "scale-0"
+                hoverIdx === idx ? "scale-90" : "scale-0"
               }`}
             />
             <ThreeDImage
